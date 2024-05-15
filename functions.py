@@ -3,32 +3,41 @@ from time import sleep
 import requests
 from math import floor
 from datetime import datetime
+from gtts import gTTS
 
-##################### Initialize pyttsx3 functions #########################################################
+def speaker(variable_text):
+    tts = gTTS(variable_text)
+    tts.save('/Applications/jarpy/audio.mp3')  
+    os.system('afplay /Applications/jarpy/audio.mp3')
 
-############################################################################################################
 os.system('clear')                                                                             
 
 def greeter():
     current = datetime.now()
     if  float(current.strftime('%H.%M')) <= 12.00: 
-        os.system('say Good Morning Sir, The time is'+str(current.strftime('%H:%M')) )
-        print("The current time is ",current.strftime('%H:%M'))
+        statement = "Good Morning sir, The current time is " + str(current.strftime('%H:%M')+' AM')
+        print(statement)
+        speaker(statement)
+    
     elif float(current.strftime('%H.%M')) <= 16.00 and float(current.strftime('%H.%M'))>= 12.00 :
-        os.system('say Good Afternoon Sir, The time is'+str(current.strftime('%H:%M')))
-        print('The current time is ',current.strftime('%H:%M'))
+        statement = "Good Afternoon sir, The current time is "+ current.strftime('%H:%M'+' PM')
+        print(statement)
+        speaker(statement)
+        
     elif float(current.strftime('%H.%M')) > 16.00: 
-        os.system('say Good Evening Sir, The time is'+str(current.strftime('%H:%M')))
-        print("The current time is ",current.strftime('%H:%M'))
+        statement = "Good Evening sir, The current time is "+ current.strftime('%H:%M'+' PM')
+        print(statement)
+        speaker(statement)
+        
 
 def weather():
     
     ########################################################################################################
     ################################ Weather Map API #######################################################
     ########################################################################################################
-    
+    speaker('Fetching weather information...')
     api_key = '22e6bc8e2472cf6f002311423db6aa1e'
-    location = 'Bengaluru'
+    location = 'Rajamahendravaram'
     url = f"http://api.openweathermap.org/data/2.5/weather?q={location}&appid={api_key}"
     response = requests.get(url)
     data = response.json()
@@ -47,7 +56,7 @@ def weather():
         
         draft = f'''The current temperature at {location} is {temperature} degrees celsius. But it feels like {feels_like} degrees celsius. The minimum temperature is {temp_min} degrees celsius and the maximum is {temp_max} degrees celsius. The humidity is {humidity} percent and the pressure is {pressure}. The wind speed is {wind_speed}. So plan the day accordingly. Have a Good day.'''
         print(draft)
-        os.system('say '+draft)
+        speaker(draft)
     else:
         print(f"Error: {response.status_code}")
 
@@ -60,17 +69,9 @@ def jokes():
     data = response.json()
     if data['type'] == 'twopart':
         print(data['setup'])
-        os.system('say '+data['setup'])
+        speaker(data['setup'])
         print(data['delivery'])
-        os.system('say '+data['delivery'])
+        speaker(data['delivery'])
     elif data['type'] == 'single':
         print(data['setup'])
-        os.system('say '+data['setup'])
-for i in range(10):
-    try:
-        jokes()
-        sleep(7)
-        os.system('clear')
-        i = i+1
-    except KeyError:
-        pass
+        speaker(data['setup'])

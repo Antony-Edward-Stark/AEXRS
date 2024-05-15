@@ -1,4 +1,6 @@
+import os
 import speaker
 
-tts.speak("Hello, world! This is spoken text using macOS's built-in synthesizer.")
-tts.stop()
+os.system('clear')  # Clear screen (optional)
+text = 'I am ironman and I am the master of the world'
+speaker.speaker(text)
