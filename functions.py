@@ -4,12 +4,7 @@ import requests
 from math import floor
 from datetime import datetime
 from gtts import gTTS
-
-def speaker(variable_text):
-    tts = gTTS(variable_text)
-    tts.save('/Applications/jarpy/audio.mp3')  
-    os.system('afplay /Applications/jarpy/audio.mp3')
-
+from speaker import speaker
 os.system('clear')                                                                             
 
 def greeter():
@@ -68,10 +63,15 @@ def jokes():
     response = requests.get(url)
     data = response.json()
     if data['type'] == 'twopart':
-        print(data['setup'])
-        speaker(data['setup'])
-        print(data['delivery'])
-        speaker(data['delivery'])
+        if 'setup' in data:
+            text = data['setup']
+            print(text)
+            speaker(text)
+        text = data['delivery']
+        print(text)
+        speaker(text)
     elif data['type'] == 'single':
-        print(data['setup'])
-        speaker(data['setup'])
+        if 'setup' in data:
+            text = data['setup']
+            print(text)
+            speaker(text)
