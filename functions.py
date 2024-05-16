@@ -3,8 +3,8 @@ from time import sleep
 import requests
 from math import floor
 from datetime import datetime
-from gtts import gTTS
 from speaker import speaker
+
 os.system('clear')                                                                             
 
 def greeter():
@@ -64,7 +64,7 @@ def jokes():
     ########################################################################################################
     
     #Getting data through API
-    url = f"https://v2.jokeapi.dev/joke/Programming,Miscellaneous,Pun?blacklistFlags=nsfw,religious,political,racist,sexist,explicit"
+    url = f"https://v2.jokeapi.dev/joke/Any"
     response = requests.get(url)
     data = response.json()
     if data['type'] == 'twopart':
