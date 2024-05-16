@@ -30,6 +30,8 @@ def weather():
     ########################################################################################################
     ################################ Weather Map API #######################################################
     ########################################################################################################
+    
+    #Accessing the data through API
     speaker('Fetching weather information...')
     api_key = '22e6bc8e2472cf6f002311423db6aa1e'
     location = 'Rajamahendravaram'
@@ -55,10 +57,13 @@ def weather():
     else:
         print(f"Error: {response.status_code}")
 
+
 def jokes():
     ########################################################################################################
     ################################ JokeAPI ###############################################################
     ########################################################################################################
+    
+    #Getting data through API
     url = f"https://v2.jokeapi.dev/joke/Programming,Miscellaneous,Pun?blacklistFlags=nsfw,religious,political,racist,sexist,explicit"
     response = requests.get(url)
     data = response.json()
