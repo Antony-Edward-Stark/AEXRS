@@ -14,7 +14,7 @@ Future plans :
   5. Natural Language Processing.
   6. Generating text based content using AI tools.
 
-As the only developer, contributor, Manitainer of this project, I am looking forward for some help in the form of contributions. All suggestions and changes are considered and The best and the needy ones will be implemented. After improvement, The other suggestions and changes ( the ones other than the needy and the best ones)
+As the only developer, contributor, Manitainer of this project, I am looking forward for some help in the form of contributions. All suggestions and changes are considered and The best and the needy ones will be implemented. After further improvement, The other suggestions and changes ( the ones other than the needy and the best ones)
 will be implemented. No suggestion is left behind and no contribution is disregarded.
 
 Thankyou for visiting this page.
