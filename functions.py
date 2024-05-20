@@ -4,6 +4,8 @@ import requests
 from math import floor
 from datetime import datetime
 from speaker import speaker
+from platform import system
+
 
 os.system('clear')                                                                             
 
@@ -80,3 +82,15 @@ def jokes():
             text = data['setup']
             print(text)
             speaker(text)
+
+def maintainance_tasks():
+    ########################################################################################################
+    ################################ For routine maintainance Tasks ########################################
+    ########################################################################################################
+    if system() == 'Darwin':
+        os.chdir('~/Library/Caches')
+        print(os.getcwd())
+    elif system() == 'Linux':
+        pass
+    elif system() == 'Windows':
+        pass
