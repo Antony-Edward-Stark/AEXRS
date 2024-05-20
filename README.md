@@ -1,4 +1,4 @@
-This is a simple voise assistant written in python ecspecially for macOS. But can be modified to run on Windows too. The main aim of this project is to provide a good, reliable assistant to users. I am a 16 yr old designing and developing it alone. I'll be glad to have contributors or supporters to thi project.
+This is a simple voise assistant written in python ecspecially for macOS. But can be modified to run on Windows too. The main aim of this project is to provide a good, reliable assistant to users. I am a 16 yr old designing and developing it alone. I'll be glad to have contributors or supporters to this project.
 
 Features :
   1. Can greet user.
