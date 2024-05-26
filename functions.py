@@ -5,6 +5,7 @@ from math import floor
 from datetime import datetime
 from speaker import speaker
 from platform import system
+from subprocess import run
 
 
 os.system('clear')                                                                             
@@ -94,3 +95,16 @@ def maintainance_tasks():
         pass
     elif system() == 'Windows':
         pass
+
+def app_opener(app_name):
+    app_name_mod = app_name+'.app'
+    app_name_mod = app_name_mod.capitalize()
+    print(app_name_mod)
+    os.chdir("/Applications")
+    if  app_name_mod in os.listdir(os.getcwd()):
+        print('App present in directory')
+        os.system("open "+app_name_mod)
+    elif app_name_mod not in os.listdir(os.getcwd()):
+        print("app not present")
+if __name__ == '__main__':
+    app_opener('GIMP')
