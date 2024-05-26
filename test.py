@@ -17,3 +17,6 @@ def app_opener(app_name):
             os.system("open "+app_name_mod)
         elif app_name_mod not in os.listdir(os.getcwd()):
             print("app not present")
+os.system("clear")
+x = input("Enter application name : ")
+app_opener(x)
