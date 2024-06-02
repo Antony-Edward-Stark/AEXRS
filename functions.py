@@ -35,7 +35,7 @@ def helper():
         "['joke': receive a random joke]---[short-command: 'j']\n"
         "['config': edit your user info]---[short-command: 'c']\n"
         "['open-app={app-name}': command to open a specified app]---[short-command: 'o-a'+var]\n"
-        "['exit': exit jarpy]---[short-command: 'e']"
+        "['exit': exit jar pi]---[short-command: 'e']"
         )
 
 

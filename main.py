@@ -1,6 +1,10 @@
 import functions as f
 from speaker import speaker
+from os import system
 
+system('clear')
+
+# ============================================ #
 jarpy_logo = """
 +===============================================+
 |        ██╗ █████╗ ██████╗  ██████╗ ██╗   ██╗  |
@@ -19,19 +23,23 @@ def splitter(text):
     word_list = text.split("=")
     return word_list
 
-
+# ================================================================ #
+#                         Starts Jarpy                             #
+# ================================================================ #
 def startup():
-    speaker("Initiating jarpy...")
+    speaker("Initiating jar pie...")
     print(jarpy_logo)
     print("To see all commands, type 'help' in the command field")
 
-
+# ================================================================ #
+#                         User Setup                               #
+# ================================================================ #
 def info_setup(state):
     if state == 'i':
-        # it's typed jar pi rather than jarpy due to pronunciation issues
-        speaker("Welcome to Jarpy, let's get you set up!")
+        # it's typed jar pie rather than jarpy due to pronunciation issues
+        speaker("Welcome to jar pie, let's get you set up!")
     elif state == 'r':
-        speaker("Starting reconfig")
+        speaker("Starting configurator")
 
     speaker("Please enter your name")
     name = input("Enter your name: ")
@@ -67,7 +75,9 @@ def info_setup(state):
 status = True
 n = 0
 
-
+# ================================================================ #
+#                       Command  Function                          #
+# ================================================================ #
 def command():
     global status, n
 
@@ -114,7 +124,7 @@ def command():
             else:
                 f.app_opener(cmd_mod[1])
 
-        # ============================= Exit invoked ============================= #
+        # ============================= Time invoked ============================= #
         if 'time' in cmd_mod or 't' in cmd_mod:
             f.current_time()
 
@@ -129,14 +139,17 @@ def command():
 
 
 startup()
-with open('user/info.txt') as i:
-    info = i.read()
-    if len(info) > 0:
-        info = info.split(';')
+try:
+    with open('user/info.txt') as i:
+        info = i.read()
+        if len(info) > 0:
+            info = info.split(';')
+    if len(info) == 0:
+        # i stands for initial config
+        info_setup('i')
+    else:
+        f.greeter(info)
+        command()
 
-if len(info) == 0:
-    # i stands for initial config
+except FileNotFoundError:
     info_setup('i')
-else:
-    f.greeter(info)
-    command()
