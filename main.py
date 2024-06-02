@@ -21,7 +21,7 @@ def splitter(text):
 
 
 def startup():
-    speaker("Initiating jar pi")
+    speaker("Initiating jarpy...")
     print(jarpy_logo)
     print("To see all commands, type 'help' in the command field")
 
