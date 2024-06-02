@@ -34,8 +34,8 @@ def helper():
         "['weather': receive the weather data of your specified city]---[short-command: 'w']\n"
         "['joke': receive a random joke]---[short-command: 'j']\n"
         "['config': edit your user info]---[short-command: 'c']\n"
-        "['open-app={app-name}': command to open a specified app]---[short-command: 'o-a'+var]\n"
-        "['exit': exit jar pi]---[short-command: 'e']"
+        "['open-app={app-name}': command to open a specified app]---[short-command: 'o-a' or 'oa'+var]\n"
+        "['exit': exit jarpy]---[short-command: 'e']"
         )
 
 
@@ -115,15 +115,37 @@ def jokes():
             speaker('I hope you find it funny')
 
 
-# def app_opener(app_name):
-#     speaker(f'Opening {app_name}')
-#     open(app_name, match_closest=True)
+def app_opener(app_name):
+    # ================================================================================================= #
+    # =========================== For macOS =========================================================== #
+    # ================================================================================================= #
+
+    # ===========================Defining app list for common ones in macOS============================ #
+    app_white_list = {'gimp':'GIMP.app',
+                    'vs code':"Visual\ Studio\ Code.app",
+                    'code':"Visual\ Studio\ Code.app",
+                    }
+    if app_name  == 'ls':
+        speaker('Here are all the apps available for launch')
+        print('User applications')
+        for app in os.listdir('/Applications'): print('\t',app) 
+        print('System applications')
+        for app in os.listdir('/system/Applications'): print('\t',app)
+        speaker("Name the app to launch")
+        app_name = input('Name the app to launch : ')
+        app_opener(app_name)
+    elif app_name in app_white_list:
+        os.system("open /Applications/"+app_white_list[app_name])
+    else :
+        app_name = app_name.replace(' ','\ ')
+        os.system("open /System/Applications/"+app_name+".app")
+        os.system("open /Applications/"+app_name+".app")
 
 
 def maintenance_tasks():
-    # ========================================================================================= #
-    # =========================== For routine maintenance Tasks =============================== #
-    # ========================================================================================= #
+    # ================================================================================================= #
+    # =========================== For routine maintenance Tasks ======================================= #
+    # ================================================================================================= #
     if system() == 'Darwin':
         os.chdir('~/Library/Caches')
         print(os.getcwd())

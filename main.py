@@ -1,6 +1,7 @@
 import functions as f
 from speaker import speaker
 from os import system
+import platform
 
 system('clear')
 
@@ -111,19 +112,28 @@ def command():
             f.weather(''.join(info[2].split()))
 
         # ======================= Open app function invoked ====================== #
-        if 'open-app' in cmd_mod or 'o-a' in cmd_mod:
-            if len(cmd_mod) <= 1:
+        if 'open-app' in cmd_mod or 'o-a' in cmd_mod or 'oa' in cmd_mod:
+            if platform.system() == 'Windows' :
+                if len(cmd_mod) <= 1:
+                    speaker('Open an app by specifying the name')
+                    print("""
+                            .----------------------------------------------.
+                            |Type 'LS' to get all apps available for launch|
+                            '----------------------------------------------'
+                            """)
+                    app_name = input('App name: ')
+                    f.app_opener(app_name)
+                else:
+                    f.app_opener(cmd_mod[1])
+            elif platform.system() == 'Darwin':
                 speaker('Open an app by specifying the name')
                 print("""
-    .----------------------------------------------.
-    |Type 'LS' to get all apps available for launch|
-    '----------------------------------------------'
-    """)
-                app_name = input('App name: ')
+                                .----------------------------------------------.
+                                |Type 'LS' to get all apps available for launch|
+                                '----------------------------------------------'
+                                """)
+                app_name = input('App name: ').lower()
                 f.app_opener(app_name)
-            else:
-                f.app_opener(cmd_mod[1])
-
         # ============================= Time invoked ============================= #
         if 'time' in cmd_mod or 't' in cmd_mod:
             f.current_time()
@@ -132,6 +142,7 @@ def command():
         if 'exit' in cmd_mod or 'e' in cmd_mod:
             speaker(f"It's a pleasure {info[1]}, Have a nice day")
             status = False
+
         else:
             n += 1
             command()
