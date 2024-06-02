@@ -5,7 +5,7 @@ from datetime import datetime
 from speaker import speaker
 from platform import system
 # to open the app
-from AppOpener import open
+# from AppOpener import open
 from apikeyfile import apikeyreturner
 
 
@@ -115,9 +115,9 @@ def jokes():
             speaker('I hope you find it funny')
 
 
-def app_opener(app_name):
-    speaker(f'Opening {app_name}')
-    open(app_name, match_closest=True)
+# def app_opener(app_name):
+#     speaker(f'Opening {app_name}')
+#     open(app_name, match_closest=True)
 
 
 def maintenance_tasks():
