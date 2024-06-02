@@ -1,5 +1,6 @@
 # Project-wide
 .DS_Store
+apikeyfile.py
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

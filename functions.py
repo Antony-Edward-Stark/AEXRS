@@ -6,6 +6,7 @@ from speaker import speaker
 from platform import system
 # to open the app
 from AppOpener import open
+from apikeyfile import apikeyreturner
 
 
 def greeter(info):
@@ -28,14 +29,14 @@ def greeter(info):
 def helper():
     speaker("here are my commands")
     print("Command list:\n"
-          "['helper': reveive a list of all the commands]---[short-command: 'h']\n"
-          "['time': get the current time]---[short-command: 't']\n"
-          "['weather': receive the weather data of your specified city]---[short-command: 'w']\n"
-          "['joke': receive a random joke]---[short-command: 'j']\n"
-          "['config': edit your user info]---[short-command: 'c']\n"
-          "['open-app={app-name}': command to open a specified app]---[short-command: 'o-a'+var]\n"
-          "['exit': exit jarpy]---[short-command: 'e']"
-          )
+        "['helper': reveive a list of all the commands]---[short-command: 'h']\n"
+        "['time': get the current time]---[short-command: 't']\n"
+        "['weather': receive the weather data of your specified city]---[short-command: 'w']\n"
+        "['joke': receive a random joke]---[short-command: 'j']\n"
+        "['config': edit your user info]---[short-command: 'c']\n"
+        "['open-app={app-name}': command to open a specified app]---[short-command: 'o-a'+var]\n"
+        "['exit': exit jarpy]---[short-command: 'e']"
+        )
 
 
 def current_time():
@@ -51,7 +52,7 @@ def weather(location):
 
     # Accessing the data through API
     speaker('Fetching weather information...')
-    api_key = '22e6bc8e2472cf6f002311423db6aa1e'
+    api_key = apikeyreturner()
     location = location
     url = f"http://api.openweathermap.org/data/2.5/weather?q={location}&appid={api_key}"
     try:
