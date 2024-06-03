@@ -5,11 +5,12 @@ Features :
   2. Can fetch Weather information.
   3. Can tell some jokes.
   4. Speaks the output.
+  5. Opening and closing apps. (works on macOS)
 
 Future plans :
   1. Voice input.
   2. Lyrics and songs.
-  3. Opening and closing apps.
+  3. Opening and closing apps. (Full support)
   4. Small maintainance tasks.
   5. Natural Language Processing.
   6. Generating text based content using AI tools.
