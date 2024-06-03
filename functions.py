@@ -81,8 +81,12 @@ def weather(location):
                 f'''Current temperature at {location}: {temperature}℃\nBut it feels like: {feels_like}℃\nMinimum temp: {temp_min}℃/ Maximum temp: {temp_max}℃\nHumidity: {humidity}%| Pressure: {pressure}| Wind speed: {wind_speed}''')
 
             speaker(draft)
+
+        
         else:
             print(f"Error: {response.status_code}")
+
+    
     except requests.exceptions.ConnectionError:
         print("Error: Can't connect.")
         speaker("Sorry, can't retrieve weather data, please check your internet connection.")
@@ -98,6 +102,7 @@ def jokes():
     url = f"https://v2.jokeapi.dev/joke/Any"
     response = requests.get(url)
     data = response.json()
+    
     if data['type'] == 'twopart':
         if 'setup' in data:
             text = data['setup']
@@ -107,6 +112,8 @@ def jokes():
         print(text)
         speaker(text)
         speaker('I hope you find it funny')
+
+    
     elif data['type'] == 'single':
         if 'setup' in data:
             text = data['setup']
@@ -125,6 +132,7 @@ def app_opener(app_name):
                     'vs code':"Visual\ Studio\ Code.app",
                     'code':"Visual\ Studio\ Code.app",
                     }
+    # ================================================================================================= #
     if app_name  == 'ls':
         speaker('Here are all the apps available for launch')
         print('User applications')
@@ -134,8 +142,12 @@ def app_opener(app_name):
         speaker("Name the app to launch")
         app_name = input('Name the app to launch : ')
         app_opener(app_name)
+
+    
     elif app_name in app_white_list:
         os.system("open /Applications/"+app_white_list[app_name])
+
+    
     else :
         app_name = app_name.replace(' ','\ ')
         os.system("open /System/Applications/"+app_name+".app")
@@ -149,7 +161,11 @@ def maintenance_tasks():
     if system() == 'Darwin':
         os.chdir('~/Library/Caches')
         print(os.getcwd())
+
+    
     elif system() == 'Linux':
         pass
+
+    
     elif system() == 'Windows':
         pass
