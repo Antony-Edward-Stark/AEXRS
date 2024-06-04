@@ -1,6 +1,6 @@
 import functions as f
 from speaker import speaker
-from os import system
+from os import system, mkdir
 import platform
 
 system('clear')
@@ -59,14 +59,26 @@ def info_setup(state):
     speaker("For weather information, please specify your current city")
     location = input("Specify your current city: ").capitalize()
 
+    speaker("For weather information, please specify your Openweathermap API key. Enter 'n' if you don't have one.: ")
+    ApiKey = input("Specify your Openweathermap API key. Enter 'n' if you don't have one. : ")
+    if ApiKey == 'n':
+        print("You will not be able to get weather information")
+        speaker("You will not be able to get weather information")
+        print("To get your openweathermap API key, go to https://home.openweathermap.org/users/sign_up")
+        speaker("To get your openweathermap API key, go to the above given URL")
+        speaker("Enter your openweathermap API key :")
+        ApiKey = input("Specify your Openweathermap API key : ")
+
     speaker("Setting you up...")
-    with open('user/info.txt', 'w') as setup:
+
+    with open('/Users/Shared/userinfo.txt', 'w') as setup:
         if gender == 'male':
             call_name = "Sir"
         elif gender == 'female':
             call_name = "Ma'am"
-        setup.write(f"{name};{call_name};{location}")
-    with open('user/info.txt', 'r') as n:
+        setup.write(f"{name};{call_name};{location};{ApiKey}")
+
+    with open('/Users/Shared/userinfo.txt', 'r') as n:
         updated_info = n.read()
         f.greeter(updated_info.split(';'))
 
@@ -82,7 +94,7 @@ n = 0
 def command():
     global status, n
 
-    with open('user/info.txt') as i:
+    with open('/Users/Shared/userinfo.txt') as i:
         info = i.read()
         if len(info) > 0:
             info = info.split(';')
@@ -151,7 +163,7 @@ def command():
 
 startup()
 try:
-    with open('user/info.txt') as i:
+    with open('/Users/Shared/userinfo.txt') as i:
         info = i.read()
         if len(info) > 0:
             info = info.split(';')

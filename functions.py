@@ -29,13 +29,13 @@ def greeter(info):
 def helper():
     speaker("here are my commands")
     print("Command list:\n"
-        "['helper': reveive a list of all the commands]-----------------[short-command: 'h']\n"
-        "['time': get the current time]---------------------------------[short-command: 't']\n"
-        "['weather': receive the weather data of your specified city]---[short-command: 'w']\n"
-        "['joke': receive a random joke]--------------------------------[short-command: 'j']\n"
-        "['config': edit your user info]--------------------------------[short-command: 'c']\n"
-        "['open-app={app-name}': command to open a specified app]-------[short-command: 'o-a' or 'oa'+var]\n"
-        "['exit': exit jarpy]-------------------------------------------[short-command: 'e']"
+        "['helper'             : reveive a list of all the commands]----------------------[short-command: 'h']\n"
+        "['time'               : get the current time]------------------------------------[short-command: 't']\n"
+        "['weather'            : receive the weather data of your specified city]---------[short-command: 'w']\n"
+        "['joke'               : receive a random joke]-----------------------------------[short-command: 'j']\n"
+        "['config'             : edit your user info]-------------------------------------[short-command: 'c']\n"
+        "['open-app={app-name}': command to open a specified app]-------------------------[short-command: 'o-a' or 'oa'+var]\n"
+        "['exit'               : exit jarpy]----------------------------------------------[short-command: 'e']"
         )
 
 
@@ -52,7 +52,11 @@ def weather(location):
 
     # Accessing the data through API
     speaker('Fetching weather information...')
-    api_key = apikeyreturner()
+    with open('/Users/Shared/userinfo.txt', 'r') as n:
+        updated_info = n.read()
+        info = updated_info.split(';')
+        api_key = info[3]
+
     location = location
     url = f"http://api.openweathermap.org/data/2.5/weather?q={location}&appid={api_key}"
     try:
