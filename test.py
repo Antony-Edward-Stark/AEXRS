@@ -1,7 +1,9 @@
-import os
-app_name = 'ls'
-if app_name  == 'ls':
-        print('User applications')
-        for app in os.listdir('/Applications'): print('\t',app)
-        print('System applications')
-        for app in os.listdir('/system/Applications'): print('\t',app)
+import requests
+from math import floor
+
+url = f"https://api.oceandrivers.com/static/resources.json"
+response = requests.get(url)
+data = response.json()
+
+if response.status_code == 200:
+    print(data)
