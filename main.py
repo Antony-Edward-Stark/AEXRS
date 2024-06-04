@@ -1,9 +1,11 @@
-import functions as f
-from speaker import speaker
 from os import system, mkdir
 import platform
 
+from speaker import speaker
+import functions as f
+
 system('clear')
+
 
 # ============================================ #
 jarpy_logo = """
@@ -16,13 +18,13 @@ jarpy_logo = """
 |    ╚════╝ ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═╝        ╚═╝     |
 +===============================================+
 """
-
 # ============================================ #
 
 
 def splitter(text):
     word_list = text.split("=")
     return word_list
+
 
 # ================================================================ #
 #                         Starts Jarpy                             #
@@ -31,6 +33,7 @@ def startup():
     speaker("Initiating jar pie...")
     print(jarpy_logo)
     print("To see all commands, type 'help' in the command field")
+
 
 # ================================================================ #
 #                         User Setup                               #

@@ -4,9 +4,7 @@ from math import floor
 from datetime import datetime
 from speaker import speaker
 from platform import system
-# to open the app
-# from AppOpener import open
-from apikeyfile import apikeyreturner
+from AppOpener import open
 
 
 def greeter(info):
@@ -82,7 +80,11 @@ def weather(location):
                 So plan the day accordingly. Have a Good day.'''
 
             print(
-                f'''Current temperature at {location}: {temperature}℃\nBut it feels like: {feels_like}℃\nMinimum temp: {temp_min}℃/ Maximum temp: {temp_max}℃\nHumidity: {humidity}%| Pressure: {pressure}| Wind speed: {wind_speed}''')
+                f'''Current temperature at {location}: {temperature}℃\n
+                But it feels like: {feels_like}℃\n
+                Minimum temp: {temp_min}℃/ Maximum temp: {temp_max}℃\n
+                Humidity: {humidity}%| Pressure: {pressure}| 
+                Wind speed: {wind_speed}''')
 
             speaker(draft)
 
