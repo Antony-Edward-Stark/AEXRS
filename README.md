@@ -24,7 +24,8 @@ Requirements :
 
 As the only developer, contributor, Manitainer of this project, I am looking forward for some help in the form of contributions. All suggestions and changes are considered and The best and the needy ones will be implemented. After further improvement, The other suggestions and changes ( the ones other than the needy and the best ones) will be implemented. No suggestion is left behind and no contribution is disregarded.
 
-The users need to add their own api key for openweathermap api at : https://home.openweathermap.org/users/sign_up 
+The users need to create their own api key for openweathermap api at : https://home.openweathermap.org/users/sign_up 
+and add it during signup.
 
 Thankyou for visiting this page.
 Have a good day!
