@@ -1,4 +1,5 @@
 from os import system, mkdir
+from time import sleep
 import platform
 
 from speaker import speaker
@@ -172,6 +173,7 @@ def command():
             speaker('Please enter the song name.')
             song = input("Song name: ")
             f.get_lyrics(artist,song)
+            sleep(3)
 
         # ============================= Exit invoked ============================= #
         if "exit" in cmd_mod or "e" in cmd_mod:
