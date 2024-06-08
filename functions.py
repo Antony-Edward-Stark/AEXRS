@@ -193,11 +193,17 @@ def get_lyrics(artist, song_title):
     artist = artist.lower()
     song_title = song_title.lower()
 
+    songs_whitelist = {'alone 2' : 'alone pt ii'}
+
+    if song_title in songs_whitelist:
+        song_title = songs_whitelist[song_title]
+        
     artist = re.sub("[^A-Za-z0-9]+", "", artist)
-    song_title = re.sub("[^A-Za-z0-9]+", "", song_title)
+    song_title = re.sub("[^A-Za-z]+", "", song_title)
 
     if artist.startswith("the"):
         artist = artist[3:]
+    
     
     url = "http://azlyrics.com/lyrics/" + artist + "/" + song_title + ".html"
 
@@ -212,6 +218,9 @@ def get_lyrics(artist, song_title):
         lyrics = lyrics.split(down_partition)[0]
         lyrics = lyrics.replace("</br>", " ")
         lyrics = lyrics.replace("<br/>", " ")
+        lyrics = lyrics.replace("<div>", " ")
+        lyrics = lyrics.replace("</div>", " ")
+        lyrics = lyrics.replace("<div/>", " ")
 
         print(lyrics)
 
