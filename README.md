@@ -6,16 +6,17 @@ Features :
   3. Can tell some jokes.
   4. Speaks the output.
   5. Opening and closing apps. (works on macOS)
+  6. Lyrics and songs. (Partial support)
 
 Future plans :
   1. Voice input.
-  2. Lyrics and songs.
+  2. Lyrics and songs. (Full support)
   3. Opening and closing apps. (Full support)
   4. Small maintainance tasks.
   5. Natural Language Processing.
   6. Generating text based content using AI tools.
 
-Requirements L
+Requirements :
   1. Python 3.10 or above
   2. os, requests, datetime, platform, speaker(included in source code), functions(included in source code), Gtts, pyttsx3, playsound3.
   3. Openweathermap API key
