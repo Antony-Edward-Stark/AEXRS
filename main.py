@@ -164,6 +164,15 @@ def command():
         if "time" in cmd_mod or "t" in cmd_mod:
             f.current_time()
 
+
+        # ============================= Time invoked ============================= #
+        if "lyrics" in cmd_mod or "l" in cmd_mod:
+            speaker('Please enter the artist name.')
+            artist = input("Artist name: ")
+            speaker('Please enter the song name.')
+            song = input("Song name: ")
+            f.get_lyrics(artist,song)
+
         # ============================= Exit invoked ============================= #
         if "exit" in cmd_mod or "e" in cmd_mod:
             speaker(f"It's a pleasure {info[1]}, Have a nice day")

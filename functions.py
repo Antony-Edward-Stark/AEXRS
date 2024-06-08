@@ -39,6 +39,7 @@ def helper():
         "['joke'               : receive a random joke]-----------------------------------[short-command: 'j']\n"
         "['config'             : edit your user info]-------------------------------------[short-command: 'c']\n"
         "['open-app={app-name}': command to open a specified app]-------------------------[short-command: 'o-a' or 'oa'+var]\n"
+        "['lyrics'             : get lyrics of a song]------------------------------------[short-command: 'l']\n"
         "['exit'               : exit jarpy]----------------------------------------------[short-command: 'e']"
     )
 
@@ -197,7 +198,7 @@ def get_lyrics(artist, song_title):
 
     if song_title in songs_whitelist:
         song_title = songs_whitelist[song_title]
-        
+
     artist = re.sub("[^A-Za-z0-9]+", "", artist)
     song_title = re.sub("[^A-Za-z]+", "", song_title)
 
