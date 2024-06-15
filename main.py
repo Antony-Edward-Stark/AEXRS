@@ -1,4 +1,4 @@
-from os import system, mkdir
+from os import system
 from time import sleep
 import platform
 
