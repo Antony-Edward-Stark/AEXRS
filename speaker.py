@@ -19,11 +19,13 @@ def speaker(variable_text):
         if n == 0:
             print(
                 """
-.-----------------------------------------------------------------------------.
-|Can't connect to Google Text-to-Speech service, using backup server (pyttsx3)|
-'-----------------------------------------------------------------------------'
-"""
+                .-----------------------------------------------------------------------------.
+                |Can't connect to Google Text-to-Speech service, using backup server (pyttsx3)|
+                '-----------------------------------------------------------------------------'
+                """
             )
+        
+
         n += 1
         engine = pyttsx3.init()
         voices = engine.getProperty("voices")
