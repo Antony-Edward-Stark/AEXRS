@@ -15,6 +15,7 @@ def speaker(variable_text):
         tts.save(filename)
         playsound3.playsound(filename)
         os.remove(filename)
+
     except gtts.tts.gTTSError:
         if n == 0:
             print(
