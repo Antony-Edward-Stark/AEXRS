@@ -165,14 +165,13 @@ def command():
         if "time" in cmd_mod or "t" in cmd_mod:
             f.current_time()
 
-
         # ============================= Time invoked ============================= #
         if "lyrics" in cmd_mod or "l" in cmd_mod:
-            speaker('Please enter the artist name.')
+            speaker("Please enter the artist name.")
             artist = input("Artist name: ")
-            speaker('Please enter the song name.')
+            speaker("Please enter the song name.")
             song = input("Song name: ")
-            f.get_lyrics(artist,song)
+            f.get_lyrics(artist, song)
             sleep(3)
 
         # ============================= Exit invoked ============================= #
