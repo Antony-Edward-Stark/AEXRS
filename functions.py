@@ -1,16 +1,17 @@
-import os
-import requests
-import re
-import urllib.request
-from math import floor
-from datetime import datetime
-from bs4 import BeautifulSoup
-from speaker import speaker
-from platform import system
+import os                         #########################################################################
+import requests                   #                      Present in Standard Python                       #
+import re                         #                              Libraries                                #
+import urllib.request             #########################################################################
 
+from platform import system       #########################################################################
+from math import floor            #          Used From... Import to Import standard functions             #
+from datetime import datetime     #########################################################################
 
-# from AppOpener import open
+from bs4 import BeautifulSoup     #          Uses Third Party Library to parse the HTML documents         #
 
+from speaker import speaker       #                Custom defined library for sound output                #
+                                  #########################################################################
+                                  
 
 def greeter(info):
     current = datetime.now()
