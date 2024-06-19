@@ -18,11 +18,13 @@ Future plans :
 
 Requirements :
   1. Python 3.10 or above
-  2. os, requests, datetime, platform(Included in python Standard Library), functions, Speaker(included in source code), Gtts, pyttsx3, playsound3(Needed to be downloaded).
-  3. Openweathermap API key
-  4. Active internet connection for best performance and functionality.
+  2. os, requests, datetime, platform(Included in python Standard Library),
+  3.  functions, Speaker(included in source code),
+  4.   Gtts, pyttsx3, playsound3(Needed to be downloaded).
+  5. Openweathermap API key
+  6. Active internet connection for best performance and functionality.
 
-As the only developer, contributor, Manitainer of this project, I am looking forward for some help in the form of contributions. All suggestions and changes are considered and The best and the needy ones will be implemented. After further improvement, The other suggestions and changes ( the ones other than the needy and the best ones) will be implemented. No suggestion is left behind and no contribution is disregarded.
+As the only developer, contributor, Maintainer of this project, I am looking forward for some help in the form of contributions. All suggestions and changes are considered and The best and the needy ones will be implemented. After further improvement, The other suggestions and changes ( the ones other than the needy and the best ones) will be implemented. No suggestion is left behind and no contribution is disregarded.
 
 The users need to create their own api key for openweathermap api at : https://home.openweathermap.org/users/sign_up 
 and add it during signup.
