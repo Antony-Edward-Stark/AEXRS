@@ -159,11 +159,13 @@ def app_opener(app_name):
         if app_name == "ls":
             speaker("Here are all the apps available for launch")
             print("User applications")
+
             for app in os.listdir("/Applications"):
                 print("\t", app)
             print("System applications")
             for app in os.listdir("/system/Applications"):
                 print("\t", app)
+            
             speaker("Name the app to launch")
             app_name = input("Name the app to launch : ")
             app_opener(app_name)
