@@ -1,17 +1,31 @@
-import os                           #########################################################################
-import requests                     #                      Present in Standard Python                       #
-import re                           #                              Libraries                                #
-import urllib.request               #########################################################################
+import os  #########################################################################
+import requests  #                      Present in Standard Python                       #
+import re  #                              Libraries                                #
+import urllib.request  #########################################################################
 
-from platform import system         #########################################################################
-from math import floor              #          Used From... Import to Import standard functions             #
-from time import sleep              #                                                                       #
-from datetime import datetime       #########################################################################
+from platform import (
+    system,
+)  #########################################################################
+from math import (
+    floor,
+)  #          Used From... Import to Import standard functions             #
+from time import (
+    sleep,
+)  #                                                                       #
+from datetime import (
+    datetime,
+)  #########################################################################
 
-from bs4 import BeautifulSoup       #          Uses Third Party Library to parse the HTML documents         #
+from bs4 import (
+    BeautifulSoup,
+)  #          Uses Third Party Library to parse the HTML documents         #
 
-from speaker import speaker         #                Custom defined library for sound output                #
-                                    #########################################################################
+from speaker import (
+    speaker,
+)  #                Custom defined library for sound output                #
+
+#########################################################################
+
 
 def greeter(info):
     current = datetime.now()
@@ -165,7 +179,7 @@ def app_opener(app_name):
             print("System applications")
             for app in os.listdir("/system/Applications"):
                 print("\t", app)
-            
+
             speaker("Name the app to launch")
             app_name = input("Name the app to launch : ")
             app_opener(app_name)
@@ -177,7 +191,7 @@ def app_opener(app_name):
             app_name = app_name.replace(" ", "\ ")
             os.system("open /System/Applications/" + app_name + ".app")
             os.system("open /Applications/" + app_name + ".app")
-        
+
     elif system() == "Windows":
         pass
 
@@ -204,7 +218,7 @@ def get_lyrics(artist, song_title):
     artist = artist.lower()
     song_title = song_title.lower()
 
-    songs_whitelist = {'alone 2' : 'alone pt ii'}
+    songs_whitelist = {"alone 2": "alone pt ii"}
 
     if song_title in songs_whitelist:
         song_title = songs_whitelist[song_title]
@@ -214,15 +228,14 @@ def get_lyrics(artist, song_title):
 
     if artist.startswith("the"):
         artist = artist[3:]
-    
-    
+
     url = "http://azlyrics.com/lyrics/" + artist + "/" + song_title + ".html"
 
     try:
         content = urllib.request.urlopen(url).read()
         soup = BeautifulSoup(content, "html.parser")
         lyrics = str(soup)
-        
+
         up_partition = "<!-- Usage of azlyrics.com content by any third-party lyrics provider is prohibited by our licensing agreement. Sorry about that. -->"
         down_partition = "<!-- MxM banner -->"
         lyrics = lyrics.split(up_partition)[1]
