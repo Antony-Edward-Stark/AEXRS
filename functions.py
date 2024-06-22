@@ -5,6 +5,7 @@ import urllib.request               ############################################
 
 from platform import system         #########################################################################
 from math import floor              #          Used From... Import to Import standard functions             #
+from time import sleep              #                                                                       #
 from datetime import datetime       #########################################################################
 
 from bs4 import BeautifulSoup       #          Uses Third Party Library to parse the HTML documents         #
@@ -15,6 +16,7 @@ from speaker import speaker         #                Custom defined library for 
 def greeter(info):
     current = datetime.now()
     state_of_day = None
+
     if float(current.strftime("%H.%M")) <= 12.00:
         state_of_day = "Good Morning"
 
@@ -129,6 +131,7 @@ def jokes():
         text = data["delivery"]
         print(text)
         speaker(text)
+        sleep(1)
         speaker("I hope you find it funny")
 
     elif data["type"] == "single":
@@ -136,40 +139,45 @@ def jokes():
             text = data["setup"]
             print(text)
             speaker(text)
+            sleep(1)
             speaker("I hope you find it funny")
 
 
 def app_opener(app_name):
-    # ================================================================================================= #
-    # =========================== For macOS =========================================================== #
-    # ================================================================================================= #
+    if system() == "Darwin":
+        # ================================================================================================= #
+        # =========================== For macOS =========================================================== #
+        # ================================================================================================= #
 
-    # ===========================Defining app list for common ones in macOS============================ #
-    app_white_list = {
-        "gimp": "GIMP.app",
-        "vs code": "Visual\ Studio\ Code.app",
-        "code": "Visual\ Studio\ Code.app",
-    }
-    # ================================================================================================= #
-    if app_name == "ls":
-        speaker("Here are all the apps available for launch")
-        print("User applications")
-        for app in os.listdir("/Applications"):
-            print("\t", app)
-        print("System applications")
-        for app in os.listdir("/system/Applications"):
-            print("\t", app)
-        speaker("Name the app to launch")
-        app_name = input("Name the app to launch : ")
-        app_opener(app_name)
+        # ===========================Defining app list for common ones in macOS============================ #
+        app_white_list = {
+            "gimp": "GIMP.app",
+            "vs code": "Visual\ Studio\ Code.app",
+            "code": "Visual\ Studio\ Code.app",
+        }
+        # ================================================================================================= #
+        if app_name == "ls":
+            speaker("Here are all the apps available for launch")
+            print("User applications")
+            for app in os.listdir("/Applications"):
+                print("\t", app)
+            print("System applications")
+            for app in os.listdir("/system/Applications"):
+                print("\t", app)
+            speaker("Name the app to launch")
+            app_name = input("Name the app to launch : ")
+            app_opener(app_name)
 
-    elif app_name in app_white_list:
-        os.system("open /Applications/" + app_white_list[app_name])
+        elif app_name in app_white_list:
+            os.system("open /Applications/" + app_white_list[app_name])
 
-    else:
-        app_name = app_name.replace(" ", "\ ")
-        os.system("open /System/Applications/" + app_name + ".app")
-        os.system("open /Applications/" + app_name + ".app")
+        else:
+            app_name = app_name.replace(" ", "\ ")
+            os.system("open /System/Applications/" + app_name + ".app")
+            os.system("open /Applications/" + app_name + ".app")
+        
+    elif system() == "Windows":
+        pass
 
 
 def maintenance_tasks():
