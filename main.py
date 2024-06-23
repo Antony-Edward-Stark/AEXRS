@@ -160,10 +160,10 @@ def command():
                 speaker("Open an app by specifying the name")
                 print(
                     """
-                                .----------------------------------------------.
-                                |Type 'LS' to get all apps available for launch|
-                                '----------------------------------------------'
-                                """
+                        .----------------------------------------------.
+                        |Type 'LS' to get all apps available for launch|
+                        '----------------------------------------------'
+                        """
                 )
                 app_name = input("App name: ").lower()
                 f.app_opener(app_name)
