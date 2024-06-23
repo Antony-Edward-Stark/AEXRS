@@ -3,6 +3,7 @@
 .DS_Store
 apikeyfile.py
 info.txt
+userinfo.txt
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

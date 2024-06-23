@@ -5,7 +5,10 @@ import platform
 from speaker import speaker
 import functions as f
 
-system("clear")
+if platform.system() == "Windows":
+    system("cls")
+elif platform.system() == "Darwin":
+    system("clear")
 
 
 # ====================================================== #
@@ -80,18 +83,25 @@ def info_setup(state):
         ApiKey = input("Specify your Openweathermap API key : ")
 
     speaker("Setting you up...")
+    if platform.system == "Darwin":
+        with open("/Users/Shared/userinfo.txt", "w") as setup:
+            if gender == "male":
+                call_name = "Sir"
+            elif gender == "female":
+                call_name = "Ma'am"
+            setup.write(f"{name};{call_name};{location};{ApiKey}")
 
-    with open("/Users/Shared/userinfo.txt", "w") as setup:
-        if gender == "male":
-            call_name = "Sir"
-        elif gender == "female":
-            call_name = "Ma'am"
-        setup.write(f"{name};{call_name};{location};{ApiKey}")
+        with open("/Users/Shared/userinfo.txt", "r") as n:
+            updated_info = n.read()
+            f.greeter(updated_info.split(";"))
 
-    with open("/Users/Shared/userinfo.txt", "r") as n:
-        updated_info = n.read()
-        f.greeter(updated_info.split(";"))
-
+    elif platform.system() == "Windows":
+        with open("userinfo.txt", "w") as setup:
+            if gender == "male":
+                call_name = "Sir"
+            elif gender == "female":
+                call_name = "Ma'am"
+            setup.write(f"{name};{call_name};{location};{ApiKey}")
     command()
 
 
@@ -105,7 +115,7 @@ def command():
     # ================================================================ #
     global status, n
 
-    with open("/Users/Shared/userinfo.txt") as i:
+    with open("userinfo.txt") as i:
         info = i.read()
         if len(info) > 0:
             info = info.split(";")
@@ -188,7 +198,7 @@ startup()
 
 
 try:
-    with open("/Users/Shared/userinfo.txt") as i:
+    with open("userinfo.txt") as i:
         info = i.read()
         if len(info) > 0:
             info = info.split(";")
