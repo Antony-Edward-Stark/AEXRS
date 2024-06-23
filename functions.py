@@ -214,7 +214,7 @@ def get_lyrics(artist, song_title):
         artist = artist[3:]
 
     url = "http://azlyrics.com/lyrics/" + artist + "/" + song_title + ".html"
-
+    print(url)
     try:
         content = urllib.request.urlopen(url).read()
         soup = BeautifulSoup(content, "html.parser")
@@ -230,7 +230,6 @@ def get_lyrics(artist, song_title):
         lyrics = lyrics.replace("</div>", " ")
         lyrics = lyrics.replace("<div/>", " ")
 
-        print(url)
         speaker("Here are the lyrics for " + song_title + " by " + artist)
         print(lyrics)
 
