@@ -1,30 +1,16 @@
-import os  #########################################################################
-import requests  #                      Present in Standard Python                       #
-import re  #                              Libraries                                #
-import urllib.request  #########################################################################
+import os                       #########################################################################
+import requests                 #                      Present in Standard Python                       #
+import re                       #                              Libraries                                #
+import urllib.request           #########################################################################
 
-from platform import (
-    system,
-)  #########################################################################
-from math import (
-    floor,
-)  #          Used From... Import to Import standard functions             #
-from time import (
-    sleep,
-)  #                                                                       #
-from datetime import (
-    datetime,
-)  #########################################################################
+from platform import system     #########################################################################
+from math import floor          #          Used From... Import to Import standard functions             #
+from time import sleep          #                                                                       #
+from datetime import datetime   #########################################################################
 
-from bs4 import (
-    BeautifulSoup,
-)  #          Uses Third Party Library to parse the HTML documents         #
-
-from speaker import (
-    speaker,
-)  #                Custom defined library for sound output                #
-
-#########################################################################
+from bs4 import BeautifulSoup   #          Uses Third Party Library to parse the HTML documents         #
+from speaker import speaker     #                Custom defined library for sound output                #
+                                #########################################################################
 
 
 def greeter(info):
