@@ -115,7 +115,7 @@ def jokes():
     # =============================== JokeAPI ================================ #
     # ======================================================================== #
     speaker("Crunching the funniest joke...")
-    
+
     url = f"https://v2.jokeapi.dev/joke/Any"
     response = requests.get(url)
     data = response.json()
@@ -230,6 +230,7 @@ def get_lyrics(artist, song_title):
         lyrics = lyrics.replace("</div>", " ")
         lyrics = lyrics.replace("<div/>", " ")
 
+        print(url)
         speaker("Here are the lyrics for " + song_title + " by " + artist)
         print(lyrics)
 

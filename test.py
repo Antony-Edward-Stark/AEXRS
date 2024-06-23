@@ -58,4 +58,4 @@ def open_app(app_name):
 #     print(f"Failed to open '{app_to_open}'")
 
 import functions as f
-f.get_lyrics("k391", "End of Time")
+f.get_lyrics("Alan Walker", "Running out of roses")
