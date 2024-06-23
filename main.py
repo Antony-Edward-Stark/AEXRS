@@ -9,6 +9,8 @@ if platform.system() == "Windows":
     system("cls")
 elif platform.system() == "Darwin":
     system("clear")
+elif platform.system() == "Linux":
+    system("clear")
 
 
 # ====================================================== #
@@ -149,13 +151,7 @@ def command():
             if platform.system() == "Windows":
                 if len(cmd_mod) <= 1:
                     speaker("Open an app by specifying the name")
-                    print(
-                        """
-                            .----------------------------------------------.
-                            |Type 'LS' to get all apps available for launch|
-                            '----------------------------------------------'
-                            """
-                    )
+                    print("Type ls to get all apps available for launch")
                     app_name = input("App name: ")
                     f.app_opener(app_name)
                 else:

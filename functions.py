@@ -179,6 +179,9 @@ def app_opener(app_name):
         #In testing on Windows...
         pass
 
+    elif system() == "Linux":
+        pass # Under development
+
 
 def maintenance_tasks():
     # ================================================================================================= #

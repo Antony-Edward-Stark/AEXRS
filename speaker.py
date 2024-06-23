@@ -10,7 +10,6 @@ n = 0
 def speaker(variable_text):
     global n
     try:
-        print("Using Google Text-to-Speech...")
         tts = gTTS(variable_text, lang="en")
         filename = ".\\aud\\aud.mp3"
         tts.save(filename)
@@ -19,7 +18,6 @@ def speaker(variable_text):
 
     except gtts.tts.gTTSError:
         n += 1
-        print("Using Pyttsx3...")
         engine = pyttsx3.init()
         voices = engine.getProperty("voices")
         engine.setProperty("voice", voices[1].id)
