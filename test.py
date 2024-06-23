@@ -48,11 +48,14 @@ def open_app(app_name):
         return False
 
 
-# Example usage
-app_to_open = input("Enter the name of the application to open: ")  # Replace with your desired application name
-success = open_app(app_to_open)
+# # Example usage
+# app_to_open = input("Enter the name of the application to open: ")  # Replace with your desired application name
+# success = open_app(app_to_open)
 
-if success == True:
-    print(f"Successfully opened '{app_to_open}'")
-else:
-    print(f"Failed to open '{app_to_open}'")
+# if success == True:
+#     print(f"Successfully opened '{app_to_open}'")
+# else:
+#     print(f"Failed to open '{app_to_open}'")
+
+import functions as f
+f.get_lyrics("k391", "End of Time")

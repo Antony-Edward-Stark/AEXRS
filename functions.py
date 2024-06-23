@@ -233,6 +233,7 @@ def get_lyrics(artist, song_title):
         lyrics = lyrics.replace("</div>", " ")
         lyrics = lyrics.replace("<div/>", " ")
 
+        speaker("Here are the lyrics for " + song_title + " by " + artist)
         print(lyrics)
 
     except Exception as e:
