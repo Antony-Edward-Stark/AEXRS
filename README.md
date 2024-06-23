@@ -1,11 +1,11 @@
-This is a simple voice assistant written in python ecspecially for macOS. But can be modified to run on Windows too. The main aim of this project is to provide a good, reliable assistant to users. I am a 16 yr old designing and developing it alone. I'll be glad to have contributors or supporters to this project.
+This is a simple voice assistant written in python ecspecially for macOS. But can be modified to run on Windows too. The main aim of this project is to provide a good, reliable assistant to users. I am a 15 yr old designing and developing it alone. I'll be glad to have contributors or supporters to this project.
 
 Features :
   1. Can greet user.
   2. Can fetch Weather information.
   3. Can tell some jokes.
   4. Speaks the output. (Partial Support)
-  5. Opening and closing apps. (works on macOS)
+  5. Opening and closing apps. (works on macOS) (Testing on Windows 11)
   6. Lyrics and songs. (Partial support)
 
 Future plans :
