@@ -29,5 +29,3 @@ def speaker(variable_text):
         tts = _TTS()
         tts.start(variable_text)
         del(tts)
-
-speaker("Hello, I am Jarvis. How can I help you today?")
