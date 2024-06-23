@@ -77,14 +77,12 @@ def weather(location):
 
         # Check for successful response
         if response.status_code == 200:
-            # variables to store data on
             temperature = floor(data["main"]["temp"] - 273.15)
             feels_like = floor(data["main"]["feels_like"] - 273.15)
             temp_min = floor(data["main"]["temp_min"] - 273.15)
             temp_max = floor(data["main"]["temp_max"] - 273.15)
             humidity = floor(data["main"]["humidity"])
             pressure = data["main"]["pressure"]
-            # weather_condition = data['weather']['description']
             wind_speed = data["wind"]["speed"]
 
             draft = f"""The current temperature at {location} is {temperature}degree celsius.
@@ -100,7 +98,6 @@ def weather(location):
                 Humidity: {humidity}%| Pressure: {pressure}| 
                 Wind speed: {wind_speed}"""
             )
-
             speaker(draft)
 
         else:
@@ -118,7 +115,7 @@ def jokes():
     # =============================== JokeAPI ================================ #
     # ======================================================================== #
     speaker("Crunching the funniest joke...")
-    # Getting data through API
+    
     url = f"https://v2.jokeapi.dev/joke/Any"
     response = requests.get(url)
     data = response.json()
