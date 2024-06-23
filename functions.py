@@ -179,6 +179,7 @@ def app_opener(app_name):
             os.system("open /Applications/" + app_name + ".app")
 
     elif system() == "Windows":
+        #In testing on Windows...
         pass
 
 
