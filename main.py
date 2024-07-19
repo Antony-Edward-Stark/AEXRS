@@ -1,3 +1,8 @@
+###################################################################################################
+# By      : Antony Edward Stark
+# Name    : main.py
+# Funtion : Integrates the funtions.py and provides the platform for dispatchimg required functions
+###################################################################################################
 from os import system
 from time import sleep
 import platform
@@ -68,21 +73,14 @@ def info_setup(state):
     speaker("For weather information, please specify your current city")
     location = input("Specify your current city: ").capitalize()
 
-    speaker(
-        "For weather information, please specify your Openweathermap API key. Enter 'n' if you don't have one.: "
-    )
-    ApiKey = input(
-        "Specify your Openweathermap API key. Enter 'n' if you don't have one. : "
-    )
+    speaker("For weather information, please specify your Openweathermap API key. Enter 'n' if you don't have one.: ")
+    ApiKey = input("Specify your Openweathermap API key. Enter 'n' if you don't have one. : ")
     if ApiKey == "n":
+        ApiKey = 'n'
         print("You will not be able to get weather information")
         speaker("You will not be able to get weather information")
-        print(
-            "To get your openweathermap API key, go to https://home.openweathermap.org/users/sign_up"
-        )
-        speaker("To get your openweathermap API key, go to the above given URL")
-        speaker("Enter your openweathermap API key :")
-        ApiKey = input("Specify your Openweathermap API key : ")
+        print("To get your openweathermap API key, go to https://home.openweathermap.org/users/sign_up")
+        speaker("To get your openweathermap API key, go to the given given URL")
 
     speaker("Setting you up...")
     if platform.system == "Darwin":
@@ -144,7 +142,14 @@ def command():
         # ======================== Weather function invoked ====================== #
         if "weather" in cmd_mod or "w" in cmd_mod:
             # split and join functions are to remove any whitespaces (e.g./n)
-            f.weather("".join(info[2].split()))
+            with open(".\\userinfo.txt",'r') as api_key:
+                info = api_key.read()
+                if info[3] == 'o':
+                    print("No OpenweathermapAPI key is specified. So weather information not gathered")
+                    speaker("No OpenweathermapAPI key is specified. So weather information not gathered")
+                    break
+                else:
+                    f.weather("".join(info[2].split()))
 
         # ======================= Open app function invoked ====================== #
         if "open-app" in cmd_mod or "o-a" in cmd_mod or "oa" in cmd_mod:
@@ -158,13 +163,7 @@ def command():
                     f.app_opener(cmd_mod[1])
             elif platform.system() == "Darwin":
                 speaker("Open an app by specifying the name")
-                print(
-                    """
-                        .----------------------------------------------.
-                        |Type 'LS' to get all apps available for launch|
-                        '----------------------------------------------'
-                        """
-                )
+                print('')
                 app_name = input("App name: ").lower()
                 f.app_opener(app_name)
         # ============================= Time invoked ============================= #

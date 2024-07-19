@@ -68,46 +68,48 @@ def weather(location):
         updated_info = n.read()
         info = updated_info.split(";")
         api_key = info[3]
-
-    location = location
-    url = f"http://api.openweathermap.org/data/2.5/weather?q={location}&appid={api_key}"
-    try:
-        response = requests.get(url)
-        data = response.json()
-
-        # Check for successful response
-        if response.status_code == 200:
-            temperature = floor(data["main"]["temp"] - 273.15)
-            feels_like = floor(data["main"]["feels_like"] - 273.15)
-            temp_min = floor(data["main"]["temp_min"] - 273.15)
-            temp_max = floor(data["main"]["temp_max"] - 273.15)
-            humidity = floor(data["main"]["humidity"])
-            pressure = data["main"]["pressure"]
-            wind_speed = data["wind"]["speed"]
-
-            draft = f"""The current temperature at {location} is {temperature}degree celsius.
-                But it feels like {feels_like}℃. The minimum temperature is {temp_min}℃ and the maximum is {temp_max}℃. 
-                The humidity is {humidity} percent and the pressure is {pressure}. 
-                The wind speed is {wind_speed}. 
-                So plan the day accordingly. Have a Good day."""
-
-            print(
-                f"""Current temperature at {location}: {temperature}℃\n
-                But it feels like: {feels_like}℃\n
-                Minimum temp: {temp_min}℃/ Maximum temp: {temp_max}℃\n
-                Humidity: {humidity}%| Pressure: {pressure}| 
-                Wind speed: {wind_speed}"""
-            )
-            speaker(draft)
-
+        print(api_key)
+        if api_key == 'o':
+            print("No api key specified. Create one first!")
+            speaker("No api key specified. Create one first!")
         else:
-            print(f"Error: {response.status_code}")
+            location = location
+            url = f"http://api.openweathermap.org/data/2.5/weather?q={location}&appid={api_key}"
+            try:
+                response = requests.get(url)
+                data = response.json()
 
-    except requests.exceptions.ConnectionError:
-        print("Error: Can't connect.")
-        speaker(
-            "Sorry, can't retrieve weather data, please check your internet connection."
-        )
+                # Check for successful response
+                if response.status_code == 200:
+                    temperature = floor(data["main"]["temp"] - 273.15)
+                    feels_like = floor(data["main"]["feels_like"] - 273.15)
+                    temp_min = floor(data["main"]["temp_min"] - 273.15)
+                    temp_max = floor(data["main"]["temp_max"] - 273.15)
+                    humidity = floor(data["main"]["humidity"])
+                    pressure = data["main"]["pressure"]
+                    wind_speed = data["wind"]["speed"]
+
+                    draft = f"""The current temperature at {location} is {temperature}degree celsius.
+                        But it feels like {feels_like}℃. The minimum temperature is {temp_min}℃ and the maximum is {temp_max}℃. 
+                        The humidity is {humidity} percent and the pressure is {pressure}. 
+                        The wind speed is {wind_speed}. 
+                        So plan the day accordingly. Have a Good day."""
+
+                    print(
+                        f"""Current temperature at {location}: {temperature}℃\n
+                        But it feels like: {feels_like}℃\n
+                        Minimum temp: {temp_min}℃/ Maximum temp: {temp_max}℃\n
+                        Humidity: {humidity}%| Pressure: {pressure}| 
+                        Wind speed: {wind_speed}"""
+                    )
+                    speaker(draft)
+
+                else:
+                    print(f"Error: {response.status_code}")
+
+            except requests.exceptions.ConnectionError:
+                print("Error: Can't connect.")
+                speaker("Sorry, can't retrieve weather data, please check your internet connection.")
 
 
 def jokes():
@@ -115,29 +117,33 @@ def jokes():
     # =============================== JokeAPI ================================ #
     # ======================================================================== #
     speaker("Crunching the funniest joke...")
+    try:
+        url = f"https://v2.jokeapi.dev/joke/Any"
+        response = requests.get(url)
+        data = response.json()
 
-    url = f"https://v2.jokeapi.dev/joke/Any"
-    response = requests.get(url)
-    data = response.json()
-
-    if data["type"] == "twopart":
-        if "setup" in data:
-            text = data["setup"]
-            print(text)
-            speaker(text)
-        text = data["delivery"]
-        print(text)
-        speaker(text)
-        sleep(1)
-        speaker("I hope you find it funny")
-
-    elif data["type"] == "single":
-        if "setup" in data:
-            text = data["setup"]
+        if data["type"] == "twopart":
+            if "setup" in data:
+                text = data["setup"]
+                print(text)
+                speaker(text)
+            text = data["delivery"]
             print(text)
             speaker(text)
             sleep(1)
             speaker("I hope you find it funny")
+
+        elif data["type"] == "single":
+            if "setup" in data:
+                text = data["setup"]
+                print(text)
+                speaker(text)
+                sleep(1)
+                speaker("I hope you find it funny")
+    except requests.exceptions.ConnectionError:
+                print("Error: Can't connect. Check Internet")
+                speaker("Sorry, can't retrieve weather data, please check your internet connection.")
+
 
 
 def app_opener(app_name):
@@ -238,3 +244,23 @@ def get_lyrics(artist, song_title):
 
     except Exception as e:
         return "Exception occurred \n" + str(e)
+
+def news_gatherer():
+    try:
+        list = ['https://saurav.tech/NewsAPI/top-headlines/category/health/in.json',
+                'https://saurav.tech/NewsAPI/top-headlines/category/science/in.json',
+                'https://saurav.tech/NewsAPI/top-headlines/category/general/in.json',
+                ]
+        for item in list:
+            url = item
+            response = requests.get(url)
+            data = response.json()
+            data = data['articles']
+            for i in data:
+                draft = str(i['title'])+i['description']
+                print(draft)
+    except requests.exceptions.ConnectionError:
+            print("Error: Can't connect. Check Internet")
+            speaker("Sorry, can't retrieve weather data, please check your internet connection.")
+
+news_gatherer()
