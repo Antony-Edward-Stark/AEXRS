@@ -7,6 +7,7 @@ Features :
   4. Speaks the output. (Partial Support)
   5. Opening and closing apps. (works on macOS) (Testing on Windows 11)
   6. Lyrics and songs. (Partial support)
+  7. News gathering.
 
 Future plans :
   1. Voice input.
