@@ -126,67 +126,67 @@ def command():
         cmd = input("\nEnter command: ").lower()
         cmd_mod = splitter(cmd)
 
-        # ========================= Helper function invoked ====================== #
-        if "help" in cmd_mod or "h" in cmd_mod:
-            f.helper()
+        for i in cmd_mod:
+            # ========================= Helper function invoked ====================== #
+            if "help" in cmd_mod or "h" in cmd_mod:
+                f.helper()
 
-        # =========================== Reconfig invoked =========================== #
-        if "config" in cmd_mod or "c" in cmd_mod:
-            # r stands for reconfig
-            info_setup("r")
+            # =========================== Reconfig invoked =========================== #
+            if "config" in cmd_mod or "c" in cmd_mod:
+                # r stands for reconfig
+                info_setup("r")
 
-        # ========================= Jokes function invoked ======================= #
-        if "jokes" in cmd_mod or "joke" in cmd_mod or "j" in cmd_mod:
-            f.jokes()
+            # ========================= Jokes function invoked ======================= #
+            if "jokes" in cmd_mod or "joke" in cmd_mod or "j" in cmd_mod:
+                f.jokes()
 
-        # ======================== Weather function invoked ====================== #
-        if "weather" in cmd_mod or "w" in cmd_mod:
-            # split and join functions are to remove any whitespaces (e.g./n)
-            with open(".\\userinfo.txt",'r') as api_key:
-                info = api_key.read()
-                if info[3] == 'o':
-                    print("No OpenweathermapAPI key is specified. So weather information not gathered")
-                    speaker("No OpenweathermapAPI key is specified. So weather information not gathered")
-                    break
-                else:
-                    f.weather("".join(info[2].split()))
+            # ======================== Weather function invoked ====================== #
+            if "weather" in cmd_mod or "w" in cmd_mod:
+                # split and join functions are to remove any whitespaces (e.g./n)
+                with open(".\\userinfo.txt",'r') as api_key:
+                    info = api_key.read()
+                    if info[3] == 'o':
+                        print("No OpenweathermapAPI key is specified. So weather information not gathered")
+                        speaker("No OpenweathermapAPI key is specified. So weather information not gathered")
+                        break
+                    else:
+                        f.weather("".join(info[2].split()))
 
-        # ======================= Open app function invoked ====================== #
-        if "open-app" in cmd_mod or "o-a" in cmd_mod or "oa" in cmd_mod:
-            if platform.system() == "Windows":
-                if len(cmd_mod) <= 1:
+            # ======================= Open app function invoked ====================== #
+            if "open-app" in cmd_mod or "o-a" in cmd_mod or "oa" in cmd_mod:
+                if platform.system() == "Windows":
+                    if len(cmd_mod) <= 1:
+                        speaker("Open an app by specifying the name")
+                        print("Type ls to get all apps available for launch")
+                        app_name = input("App name: ")
+                        f.app_opener(app_name)
+                    else:
+                        f.app_opener(cmd_mod[1])
+                elif platform.system() == "Darwin":
                     speaker("Open an app by specifying the name")
-                    print("Type ls to get all apps available for launch")
-                    app_name = input("App name: ")
+                    print('')
+                    app_name = input("App name: ").lower()
                     f.app_opener(app_name)
-                else:
-                    f.app_opener(cmd_mod[1])
-            elif platform.system() == "Darwin":
-                speaker("Open an app by specifying the name")
-                print('')
-                app_name = input("App name: ").lower()
-                f.app_opener(app_name)
-        # ============================= Time invoked ============================= #
-        if "time" in cmd_mod or "t" in cmd_mod:
-            f.current_time()
+            # ============================= Time invoked ============================= #
+            if "time" in cmd_mod or "t" in cmd_mod:
+                f.current_time()
 
-        # ============================= Time invoked ============================= #
-        if "lyrics" in cmd_mod or "l" in cmd_mod:
-            speaker("Please enter the artist name.")
-            artist = input("Artist name: ")
-            speaker("Please enter the song name.")
-            song = input("Song name: ")
-            f.get_lyrics(artist, song)
-            sleep(3)
+            # ============================= Time invoked ============================= #
+            if "lyrics" in cmd_mod or "l" in cmd_mod:
+                speaker("Please enter the artist name.")
+                artist = input("Artist name: ")
+                speaker("Please enter the song name.")
+                song = input("Song name: ")
+                f.get_lyrics(artist, song)
+                sleep(3)
 
-        # ============================= Exit invoked ============================= #
-        if "exit" in cmd_mod or "e" in cmd_mod:
-            speaker(f"It's a pleasure {info[1]}, Have a nice day")
-            status = False
+            # ============================= Exit invoked ============================= #
+            if "exit" in cmd_mod or "e" in cmd_mod:
+                speaker(f"It's a pleasure {info[1]}, Have a nice day")
+                status = False
 
-        else:
-            n += 1
-            command()
+            else:
+                break
 
 
 startup()

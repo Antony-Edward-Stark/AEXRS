@@ -247,18 +247,20 @@ def get_lyrics(artist, song_title):
 
 def news_gatherer():
     try:
-        list = ['https://saurav.tech/NewsAPI/top-headlines/category/health/in.json',
-                'https://saurav.tech/NewsAPI/top-headlines/category/science/in.json',
-                'https://saurav.tech/NewsAPI/top-headlines/category/general/in.json',
-                ]
+        list = ['business','entertainment','general','health','science','sports','technology']
         for item in list:
-            url = item
+            url = f'https://saurav.tech/NewsAPI/top-headlines/category/{item}/in.json'
             response = requests.get(url)
             data = response.json()
             data = data['articles']
-            for i in data:
-                draft = str(i['title'])+i['description']
-                print(draft)
+            print(data)
+            break
+            # for i in data:
+            #     draft = str(i['title'])+str(i['description'])
+            #     os.system('cls')
+            #     print(draft)
+            #     print()
+            #     sleep(0.1)
     except requests.exceptions.ConnectionError:
             print("Error: Can't connect. Check Internet")
             speaker("Sorry, can't retrieve weather data, please check your internet connection.")
