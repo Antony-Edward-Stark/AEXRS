@@ -1,6 +1,7 @@
 import os                       #########################################################################
 import requests                 #                      Present in Standard Python                       #
 import re                       #                              Libraries                                #
+import platform                 #                                                                       #
 import urllib.request           #########################################################################
 
 from platform import system     #########################################################################
@@ -57,18 +58,25 @@ def current_time():
     )
 
 
-def weather(location):
+def weather():
     # ================================================================================ #
     # =============================== Weather Map API ================================ #
     # ================================================================================ #
 
     # Accessing the data through API
     speaker("Fetching weather information...")
-    with open("/Users/Shared/userinfo.txt", "r") as n:
-        updated_info = n.read()
-        info = updated_info.split(";")
-        api_key = info[3]
-        print(api_key)
+    if platform.system == "Darwin":
+        with open("/Users/Shared/userinfo.txt", "r") as n:
+            updated_info = n.read()
+            info = updated_info.split(";")
+            api_key = info[3]
+            location = info[2]
+    elif platform.system() == "Windows":
+        with open(".\\userinfo.txt", "r") as n:
+            updated_info = n.read()
+            info = updated_info.split(";")
+            api_key = info[3]
+            location = info[2]
         if api_key == 'o':
             print("No api key specified. Create one first!")
             speaker("No api key specified. Create one first!")
@@ -89,11 +97,7 @@ def weather(location):
                     pressure = data["main"]["pressure"]
                     wind_speed = data["wind"]["speed"]
 
-                    draft = f"""The current temperature at {location} is {temperature}degree celsius.
-                        But it feels like {feels_like}℃. The minimum temperature is {temp_min}℃ and the maximum is {temp_max}℃. 
-                        The humidity is {humidity} percent and the pressure is {pressure}. 
-                        The wind speed is {wind_speed}. 
-                        So plan the day accordingly. Have a Good day."""
+                    draft = f"""The current temperature at {location} is {temperature}degree celsius.But it feels like {feels_like}℃. The minimum temperature is {temp_min}℃ and the maximum is {temp_max}℃.The humidity is {humidity} percent and the pressure is {pressure}.The wind speed is {wind_speed}.So plan the day accordingly. Have a Good day."""
 
                     print(
                         f"""Current temperature at {location}: {temperature}℃\n

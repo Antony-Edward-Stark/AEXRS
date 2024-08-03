@@ -59,7 +59,7 @@ def info_setup(state):
     speaker("Please enter your name")
     name = input("Enter your name: ")
 
-    speaker("To refer you as 'Sir' or 'Ma'am', please specify your gender")
+    speaker("To refer you as 'Sir' or 'Madam', please specify your gender")
     gender = input("Specify your gender(male/female): ").lower()
     if gender == "male":
         call_name = "Sir"
@@ -96,7 +96,7 @@ def info_setup(state):
             f.greeter(updated_info.split(";"))
 
     elif platform.system() == "Windows":
-        with open("c:\\Program Files\\userinfo.txt", "w") as setup:
+        with open("userinfo.txt", "w") as setup:
             if gender == "male":
                 call_name = "Sir"
             elif gender == "female":
@@ -142,16 +142,7 @@ def command():
 
             # ======================== Weather function invoked ====================== #
             elif "weather" == command:
-                # split and join functions are to remove any whitespaces (e.g./n)
-                with open(".\\userinfo.txt",'r') as api_key:
-                    info = api_key.read()
-                    if info[3] == 'o':
-                        print("No OpenweathermapAPI key is specified. So weather information not gathered")
-                        speaker("No OpenweathermapAPI key is specified. So weather information not gathered")
-                        break
-                    else:
-                        f.weather("".join(info[2].split()))
-
+                f.weather()
             # ======================= Open app function invoked ====================== #
             elif "open-app" == command:
                 if platform.system() == "Windows":
