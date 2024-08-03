@@ -10,6 +10,7 @@ import platform
 from speaker import speaker
 import functions as f
 
+
 if platform.system() == "Windows":
     system("cls")
 elif platform.system() == "Darwin":
@@ -19,21 +20,21 @@ elif platform.system() == "Linux":
 
 
 # ====================================================== #
-jarpy_logo = """
+friday_logo = """
 +===============================================+
-|        ██╗ █████╗ ██████╗  ██████╗ ██╗   ██╗  |
-|        ██║██╔══██╗██╔══██╗ ██╔══██╗╚██╗ ██╔╝  |
-|        ██║███████║██████╔╝ ██████╔╝ ╚████╔╝   |
-|   ██   ██║██╔══██║██╔══██╗ ██╔═══╝   ╚██╔╝    |
-|   ╚█████╔╝██║  ██║██║  ██║ ██║        ██║     |
-|    ╚════╝ ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═╝        ╚═╝     |
+|                                               |
+|                                               |
+|                  In making                    |
+|                                               |
+|                                               |
+|                                               |
 +===============================================+
 """
 # ====================================================== #
 
 
 def splitter(text):
-    word_list = text.split("=")
+    word_list = text.split(" ")
     return word_list
 
 
@@ -41,8 +42,8 @@ def startup():
     # ================================================================ #
     #                         Starts Jarpy                             #
     # ================================================================ #
-    speaker("Initiating jar pie...")
-    print(jarpy_logo)
+    speaker("Initiating friday...")
+    print(friday_logo)
     print("To see all commands, type 'help' in the command field")
 
 
@@ -51,8 +52,7 @@ def info_setup(state):
     #                         User Setup                               #
     # ================================================================ #
     if state == "i":
-        # it's typed jar pie rather than jarpy due to pronunciation issues
-        speaker("Welcome to jar pie, let's get you set up!")
+        speaker("Welcome to friday, let's get you set up!")
     elif state == "r":
         speaker("Starting configurator")
 
@@ -73,7 +73,7 @@ def info_setup(state):
     speaker("For weather information, please specify your current city")
     location = input("Specify your current city: ").capitalize()
 
-    speaker("For weather information, please specify your Openweathermap API key. Enter 'n' if you don't have one.: ")
+    speaker("For weather information, please specify your Openweathermap API key. Enter 'n' if you don't have one.")
     ApiKey = input("Specify your Openweathermap API key. Enter 'n' if you don't have one. : ")
     if ApiKey == "n":
         ApiKey = 'n'
@@ -96,7 +96,7 @@ def info_setup(state):
             f.greeter(updated_info.split(";"))
 
     elif platform.system() == "Windows":
-        with open("userinfo.txt", "w") as setup:
+        with open("c:\\Program Files\\userinfo.txt", "w") as setup:
             if gender == "male":
                 call_name = "Sir"
             elif gender == "female":
@@ -125,23 +125,23 @@ def command():
             speaker(f"Please enter a command")
         cmd = input("\nEnter command: ").lower()
         cmd_mod = splitter(cmd)
-
-        for i in cmd_mod:
+        print(cmd_mod)
+        for command in cmd_mod:
             # ========================= Helper function invoked ====================== #
-            if "help" in cmd_mod or "h" in cmd_mod:
+            if "help" == command:
                 f.helper()
 
             # =========================== Reconfig invoked =========================== #
-            if "config" in cmd_mod or "c" in cmd_mod:
+            elif "config" == command:
                 # r stands for reconfig
                 info_setup("r")
 
             # ========================= Jokes function invoked ======================= #
-            if "jokes" in cmd_mod or "joke" in cmd_mod or "j" in cmd_mod:
+            elif "jokes" == command or "joke" == command:
                 f.jokes()
 
             # ======================== Weather function invoked ====================== #
-            if "weather" in cmd_mod or "w" in cmd_mod:
+            elif "weather" == command:
                 # split and join functions are to remove any whitespaces (e.g./n)
                 with open(".\\userinfo.txt",'r') as api_key:
                     info = api_key.read()
@@ -153,26 +153,20 @@ def command():
                         f.weather("".join(info[2].split()))
 
             # ======================= Open app function invoked ====================== #
-            if "open-app" in cmd_mod or "o-a" in cmd_mod or "oa" in cmd_mod:
+            elif "open-app" == command:
                 if platform.system() == "Windows":
-                    if len(cmd_mod) <= 1:
-                        speaker("Open an app by specifying the name")
-                        print("Type ls to get all apps available for launch")
-                        app_name = input("App name: ")
-                        f.app_opener(app_name)
-                    else:
-                        f.app_opener(cmd_mod[1])
+                    pass #working for windows 11
+
                 elif platform.system() == "Darwin":
                     speaker("Open an app by specifying the name")
-                    print('')
                     app_name = input("App name: ").lower()
                     f.app_opener(app_name)
             # ============================= Time invoked ============================= #
-            if "time" in cmd_mod or "t" in cmd_mod:
+            elif "time" == command:
                 f.current_time()
 
             # ============================= Time invoked ============================= #
-            if "lyrics" in cmd_mod or "l" in cmd_mod:
+            elif "lyrics" == command:
                 speaker("Please enter the artist name.")
                 artist = input("Artist name: ")
                 speaker("Please enter the song name.")
@@ -180,13 +174,13 @@ def command():
                 f.get_lyrics(artist, song)
                 sleep(3)
 
+            #=============================News invoked ===============================#
+            elif 'news' == command:
+                f.news_gatherer()
             # ============================= Exit invoked ============================= #
-            if "exit" in cmd_mod or "e" in cmd_mod:
+            if "exit" == command:
                 speaker(f"It's a pleasure {info[1]}, Have a nice day")
                 status = False
-
-            else:
-                break
 
 
 startup()

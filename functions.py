@@ -35,14 +35,14 @@ def helper():
     speaker("here are my commands")
     print(
         "Command list:\n"
-        "['helper'             : reveive a list of all the commands]----------------------[short-command: 'h']\n"
-        "['time'               : get the current time]------------------------------------[short-command: 't']\n"
-        "['weather'            : receive the weather data of your specified city]---------[short-command: 'w']\n"
-        "['joke'               : receive a random joke]-----------------------------------[short-command: 'j']\n"
-        "['config'             : edit your user info]-------------------------------------[short-command: 'c']\n"
-        "['open-app={app-name}': command to open a specified app]-------------------------[short-command: 'o-a' or 'oa'+var]\n"
-        "['lyrics'             : get lyrics of a song]------------------------------------[short-command: 'l']\n"
-        "['exit'               : exit jarpy]----------------------------------------------[short-command: 'e']"
+        "['helper'             : reveive a list of all the commands]----------------------[]\n"
+        "['time'               : get the current time]------------------------------------[]\n"
+        "['weather'            : receive the weather data of your specified city]---------[]\n"
+        "['joke'               : receive a random joke]-----------------------------------[]\n"
+        "['config'             : edit your user info]-------------------------------------[]\n"
+        "['open-app={app-name}': command to open a specified app]-------------------------[]\n"
+        "['lyrics'             : get lyrics of a song]------------------------------------[]\n"
+        "['exit'               : exit jarpy]----------------------------------------------[]"
     )
 
 
@@ -242,8 +242,10 @@ def get_lyrics(artist, song_title):
         speaker("Here are the lyrics for " + song_title + " by " + artist)
         print(lyrics)
 
-    except Exception as e:
-        return "Exception occurred \n" + str(e)
+    except requests.exceptions.ConnectionError:
+        speaker("Sorry, can't retrieve weather data, please check your internet connection.")
+        print("Error: Can't connect. Check Internet")
+
 
 def news_gatherer():
     try:
