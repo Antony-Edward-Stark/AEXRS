@@ -97,7 +97,7 @@ def weather():
                     pressure = data["main"]["pressure"]
                     wind_speed = data["wind"]["speed"]
 
-                    draft = f"""The current temperature at {location} is {temperature}degree celsius.But it feels like {feels_like}℃. The minimum temperature is {temp_min}℃ and the maximum is {temp_max}℃.The humidity is {humidity} percent and the pressure is {pressure}.The wind speed is {wind_speed}.So plan the day accordingly. Have a Good day."""
+                    draft = f"""The current temperature at {location} is {temperature}degree celsius.\nBut it feels like {feels_like}℃. \nThe minimum temperature is {temp_min}℃ and the maximum is {temp_max}℃.\nThe humidity is {humidity} percent and the pressure is {pressure}.\nThe wind speed is {wind_speed}.\nSo plan the day accordingly. Have a Good day."""
 
                     print(
                         f"""Current temperature at {location}: {temperature}℃\n
