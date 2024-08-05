@@ -146,7 +146,7 @@ def jokes():
                 speaker("I hope you find it funny")
     except requests.exceptions.ConnectionError:
                 print("Error: Can't connect. Check Internet")
-                speaker("Sorry, can't retrieve weather data, please check your internet connection.")
+                speaker("Sorry, can't retrieve required data, please check your internet connection.")
 
 
 
