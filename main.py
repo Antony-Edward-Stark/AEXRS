@@ -3,7 +3,7 @@
 # Name    : main.py
 # Funtion : Integrates the funtions.py and provides the platform for dispatchimg required functions
 ###################################################################################################
-from os import system
+from os import system,startfile
 from time import sleep
 import platform
 
@@ -22,10 +22,10 @@ elif platform.system() == "Linux":
 # ====================================================== #
 friday_logo = """
 +=================================================================+
-|  ||||||||  ||||||||     |||  ||||      |||||||||  ||      ||    |
-|  ||        ||     ||    |||  ||  ||    ||     ||   ||    ||     |
-|  ||||||||  ||||||||     |||  ||    ||  ||     ||    ||  ||      |
-|  ||        || ||        |||  ||    ||  |||||||||     ||||       |
+|  ||||||||  ||||||||     |||  ||||      |||||||||   ||     ||    |
+|  ||        ||     ||    |||  ||  ||    ||     ||    ||   ||     |
+|  ||||||||  ||||||||     |||  ||    ||  ||     ||     || ||      |
+|  ||        || ||        |||  ||    ||  |||||||||       ||       |
 |  ||        ||   ||      |||  ||  ||    ||     ||      ||        |
 |  ||        ||     ||    |||  ||||      ||     ||     ||         |
 +=================================================================+
@@ -80,8 +80,10 @@ def info_setup(state):
         print("You will not be able to get weather information")
         speaker("You will not be able to get weather information")
         print("To get your openweathermap API key, go to https://home.openweathermap.org/users/sign_up")
-        speaker("To get your openweathermap API key, go to the given given URL")
-
+        speaker("To get your openweathermap API key, go to the given URL")
+        if platform.system()=="Windows":startfile('https://home.openweathermap.org/users/sign_up')
+        elif platform.system()=='Darwin':system('open https://home.openweathermap.org/users/sign_up')
+    
     speaker("Setting you up...")
     if platform.system == "Darwin":
         with open("/Users/Shared/userinfo.txt", "w") as setup:
