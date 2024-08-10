@@ -11,7 +11,7 @@ from datetime import datetime   ################################################
 
 from bs4 import BeautifulSoup   #          Uses Third Party Library to parse the HTML documents         #
 from speaker import speaker     #                Custom defined library for sound output                #
-                                #########################################################################
+import wikipedia                #########################################################################
 
 
 def greeter(info):
@@ -271,25 +271,14 @@ def news_gatherer():
             print("Error: Can't connect. Check Internet")
             speaker("Sorry, can't retrieve required data, please check your internet connection.")
 
-def wiki_gatherer(article):
-    article = re.sub("[^A-Za-z0-9]+", "_", article)
-    url = "https://en.wikipedia.org/wiki/" + article
-    print(url)
-    try:
-        content = requests.get(url)
-        soup = BeautifulSoup(content,'html.parser')
-        data = str(soup)
-        article = article.replace("</br>", " ")
-        article = article.replace("<br/>", " ")
-        article = article.replace("<div>", " ")
-        article = article.replace("</div>", " ")
-        article = article.replace("<div/>", " ")
+def wiki_gatherer():
+    speaker("Enter the article you wanna read")
+    article=input("Enter the article you wanna read :")
+    available = wikipedia.search(article)
+    print("articles available are :")
 
-        speaker("Here is the data requested")
-        print(article)
-
-    except requests.exceptions.ConnectionError:
-        speaker("Sorry, can't retrieve weather data, please check your internet connection.")
-        print("Error: Can't connect. Check Internet")
-
-wiki_gatherer('Apple_silicon')
+    summary = wikipedia.summary(article,sentences=10)
+    print('Summary of the requested article according to wikipedia is :')
+    speaker('Summary of the requested article according to wikipedia is')
+    print(summary)
+    speaker(summary)
