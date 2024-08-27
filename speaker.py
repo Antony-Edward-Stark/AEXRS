@@ -1,7 +1,7 @@
 import gtts.tts
 from gtts import gTTS
 import pyttsx3
-from playsound3 import playsound
+import playsound3
 import os
 
 n = 0
@@ -13,7 +13,7 @@ def speaker(variable_text):
         tts = gTTS(variable_text, lang="en")
         filename = ".\\aud.mp3"
         tts.save(filename)
-        playsound(filename)
+        playsound3.playsound(filename)
         os.remove(filename)
 
     except gtts.tts.gTTSError:

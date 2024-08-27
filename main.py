@@ -3,7 +3,7 @@
 # Name    : main.py
 # Funtion : Integrates the funtions.py and provides the platform for dispatchimg required functions
 ###################################################################################################
-from os import system,startfile
+
 from time import sleep
 import platform
 
@@ -12,10 +12,13 @@ import functions as f
 
 
 if platform.system() == "Windows":
+    from os import system,startfile
     system("cls")
 elif platform.system() == "Darwin":
+    from os import system,startfile
     system("clear")
 elif platform.system() == "Linux":
+    from os import system
     system("clear")
 
 
